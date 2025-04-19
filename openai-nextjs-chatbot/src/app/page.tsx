@@ -3,6 +3,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useChat } from '@ai-sdk/react';
 import { Button } from '@/components/ui/button'
 import { Send } from 'lucide-react';
+import Message from './components/Messages';
 
 export default function Home() {
   const { messages, handleSubmit, input, handleInputChange } = useChat();
@@ -12,12 +13,7 @@ export default function Home() {
       <div className="container h-full w-full flex flex-col py-8">
         <div className='flex-1 overflow-y-auto'>
           {messages.map((message) => (
-            <div key={message.id} className='flex items-center'>
-              <div className='w-8 h-8 bg-primary rounded-full mr-4'></div>
-              <div className='bg-white p-4 rounded-lg'>
-                <p className='text-lg'>{message.content}</p>
-              </div>
-            </div>
+            <Message key={message.id} message={message} />
           ))}
         </div>
 
