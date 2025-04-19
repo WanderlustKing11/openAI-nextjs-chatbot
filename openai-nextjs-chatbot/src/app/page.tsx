@@ -20,7 +20,7 @@ export default function Home() {
         <form onSubmit={handleSubmit} className='mt-auto relative'>
           <Textarea 
             className='w-full text-lg'
-            placeholder='Say something'
+            placeholder='Type here...'
             value={input}
             onChange={handleInputChange}
           />

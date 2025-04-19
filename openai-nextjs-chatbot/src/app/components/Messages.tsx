@@ -1,5 +1,6 @@
+import { Card, CardHeader } from '@/components/ui/card';
 import { Message as MessageType } from 'ai';
-import { Bot } from 'lucide-react';
+import { Bot, User } from 'lucide-react';
 
 export default function Message({ message }: { message: MessageType }) {
     const { role, content } = message;
@@ -18,5 +19,12 @@ export default function Message({ message }: { message: MessageType }) {
             </div>
         )
     }
-    return null;
+    return <Card>
+        <CardHeader>
+            <div className="flex">
+                <User size={36} />
+                {content}
+            </div>
+        </CardHeader>
+    </Card>;
 }
