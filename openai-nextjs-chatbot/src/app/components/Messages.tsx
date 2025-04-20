@@ -6,12 +6,8 @@ export default function Message({ message }: { message: MessageType }) {
     const { role, content } = message;
     if (role == 'assistant') {
         return (
-            <div
-                className='flex flex-col gap-3 p-6 whitespace-pre-wrap'
-            >
-                <div
-                    className='flex itemx-center gap-2'
-                >
+            <div className='flex flex-col gap-3 p-6 whitespace-pre-wrap'>
+                <div className='flex itemx-center gap-2'>
                     <Bot />
                     Assistant:
                 </div>
@@ -19,12 +15,14 @@ export default function Message({ message }: { message: MessageType }) {
             </div>
         )
     }
-    return <Card>
-        <CardHeader>
-            <div className="flex">
-                <User size={36} />
-                {content}
-            </div>
-        </CardHeader>
-    </Card>;
+    return (
+        <Card className='whitespace-pre-wrap'>
+            <CardHeader>
+                <div className="flex items-center gap-2">
+                    <User size={36} />
+                    {content}
+                </div>
+            </CardHeader>
+        </Card>
+    );
 }
