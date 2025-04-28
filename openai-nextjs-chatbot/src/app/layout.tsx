@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Celeb AI Chatbot",
+  title: "My-Pocket-Buddy",
   description: "An OpenAI chatbot website created by NextJs",
 };
 
