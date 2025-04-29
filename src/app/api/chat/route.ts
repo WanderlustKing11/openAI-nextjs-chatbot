@@ -1,6 +1,5 @@
 import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
-import { NextResponse } from 'next/server';
 import { RateLimiter } from '@/lib/rate-limiter';
 
 // Allow streaming responses up to 30 seconds
