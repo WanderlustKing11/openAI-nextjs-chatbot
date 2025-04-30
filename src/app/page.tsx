@@ -8,9 +8,7 @@ import { useRef } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
-  const { messages, handleSubmit, input, handleInputChange } = useChat({
-    headers: { 'x-api-key': process.env.NEXT_PUBLIC_CHAT_API_KEY! }
-  });
+  const { messages, handleSubmit, input, handleInputChange } = useChat();
   const formRef = useRef<HTMLFormElement>(null);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {

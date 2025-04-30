@@ -1,3 +1,4 @@
+
 import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { RateLimiter } from '@/lib/rate-limiter';
@@ -6,9 +7,15 @@ import { RateLimiter } from '@/lib/rate-limiter';
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-    const auth = req.headers.get('x-api-key');
+    // parse chat_access from cookie header
+    const cookieHeader = req.headers.get('cookie') || '';
+    const cookies = Object.fromEntries(
+        cookieHeader.split('; ').map((c) => c.split('='))
+    );
+    const auth = cookies['chat_access']
+
     if (!auth) {
-        return new Response('Unauthorized', { status: 401 })
+        return new Response('Unauthorized', { status: 401 });
     }
 
     // rate-limit per code
@@ -16,17 +23,6 @@ export async function POST(req: Request) {
     if (!(await limiter.consume())) {
         return new Response('Too Many Requests', { status: 429 })
     }
-
-    // validate which HERO and correct key
-    const valid = [
-        process.env.CR7_CODE,
-        process.env.MESSI_CODE,
-        process.env.LBJ_CODE
-    ]
-    if (!valid.includes(auth)) {
-        return new Response('Unauthorized', { status: 401 })
-    }
-
 
 
     // HERO System Prompts
@@ -49,7 +45,6 @@ export async function POST(req: Request) {
     - 50% chance to ask a follow-up question.
     `.trim()
     } else {
-        // your fallback (e.g. LeBron James)
         systemPrompt = `
     You are LeBron James:
     - Speak with charisma and basketball lore.

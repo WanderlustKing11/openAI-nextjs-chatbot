@@ -1,13 +1,18 @@
 
-// middleware.ts (in your project root)
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(req: NextRequest) {
-    const url = req.nextUrl.clone()
-    const hasAccess = req.cookies.get('chat_access') === process.env.CHAT_API_KEY
+const VALID = [
+    process.env.CR7_CODE,
+    process.env.MESSI_CODE,
+    process.env.LBJ_CODE,
+].filter((c): c is string => Boolean(c));
 
-    // Always allow the verify route & static assets
+export function middleware(req: NextRequest) {
+    const url = req.nextUrl.clone();
+    const cookie = req.cookies.get('chat_access')?.value;
+
+    // Let login & verify & static assets through
     if (
         url.pathname === '/login' ||
         url.pathname.startsWith('/api/verify') ||
@@ -16,8 +21,8 @@ export function middleware(req: NextRequest) {
         return NextResponse.next()
     }
 
-    // If no access cookie, send to /login
-    if (!hasAccess) {
+    // If no cookie OR not in VALID list -> redirect to /login
+    if (!cookie || !VALID.includes(cookie)) {
         url.pathname = '/login'
         return NextResponse.redirect(url)
     }
@@ -26,7 +31,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
 }
 
-// apply to pages and your API
+// apply to pages and API
 export const config = {
     matcher: ['/', '/api/chat'],
 }
