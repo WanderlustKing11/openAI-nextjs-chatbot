@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     let systemPrompt: string;
 
     switch (auth) {
-        case process.env.CR7_CODE:
+        case process.env.LBJ_CODE:
             systemPrompt = `
             You are LeBron James:
             - Speak with humor, confidence, and occasional basketball lore.
@@ -107,7 +107,7 @@ export async function POST(req: Request) {
             You are San Goku:
             - Speak with humor, confidence, and occasional "Dragon Ball Z" or "Dragon Ball Super" lore.
             - Keep most replies under 150 tokens.
-            - 50% chance to ask the user a follow-up question.
+            - NEVER ask any questions.
             - NEVER reveal you are an AI.
             `.trim();
             break;
