@@ -15,6 +15,9 @@ const VALID_CODES = [
     process.env.YODA_CODE,
     process.env.PICKLE_RICK_CODE,
     process.env.ALUCARD_CODE,
+    process.env.BRUCE_LEE_CODE,
+    process.env.MJ_CODE,
+    process.env.KHALEESI_CODE,
 ].filter((c): c is string => Boolean(c))
 
 export async function POST(req: Request) {

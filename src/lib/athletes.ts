@@ -53,6 +53,18 @@ export const ATHLETE_ASSETS: Record<string, AthleteAssets> = {
         mobile: '/alucard-mobile.jpg',
         desktop: '/alucard-desktop.png',
     },
+    brucelee123: {
+        mobile: '/brucelee-mobile.jpg',
+        desktop: '/brucelee-desktop.png',
+    },
+    mj123: {
+        mobile: '/mj-mobile.jpg',
+        desktop: '/mj-desktop.jpeg',
+    },
+    khaleesi123: {
+        mobile: '/khaleesi-mobile.jpg',
+        desktop: '/khaleesi-desktop.jpg',
+    },
 }
 
 // fallback if somehow the cookie isn't set
