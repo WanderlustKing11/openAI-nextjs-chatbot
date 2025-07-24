@@ -23,7 +23,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-100">
+    <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
       <form 
         onSubmit={handleLogin} 
         className="p-6 bg-white rounded shadow text-black">
@@ -64,6 +64,13 @@ export default function LoginPage() {
           Unlock
         </button>
       </form>
+
+      <div className='flex flex-col mt-12 max-w-[33%]'>
+        <h2>Coming Soon!</h2>
+        <p>Apologies to anyone who comes here and hasn't seen any updates in a while.</p>
+        <p>I'm introducing a new AI model, and some site wide changes.</p>
+        <p>Keep an eye out for changes soon!</p>
+      </div>
     </div>
   )
 }
